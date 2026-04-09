@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
  <title>Machine Learning Poster</title>
  <style>
  *{
  box-sizing:border-box;
  margin:0;
  padding:0;
+ }
+
+ html, body{
+ width:100%;
+ overflow-x:hidden;
  }
 
  :root{
@@ -29,6 +34,8 @@
 
  body{
  min-height:100vh;
+ min-height:100svh;
+ min-height:100dvh;
  display:flex;
  justify-content:center;
  align-items:center;
@@ -45,6 +52,9 @@
  position:relative;
  width:min(100%, 1080px);
  aspect-ratio:1080 / 1350;
+ min-height:calc(100vh - 36px);
+ min-height:calc(100svh - 36px);
+ min-height:calc(100dvh - 36px);
  overflow:hidden;
  border-radius:0;
  background:
@@ -225,12 +235,8 @@
  }
 
  @keyframes gradientShift{
- 0%{
- background-position:0% center;
- }
- 100%{
- background-position:200% center;
- }
+ 0%{ background-position:0% center; }
+ 100%{ background-position:200% center; }
  }
 
  @keyframes glowPulse{
@@ -253,12 +259,8 @@
  }
 
  @keyframes titleFloat{
- 0%,100%{
- transform:translateY(0px);
- }
- 50%{
- transform:translateY(-3px);
- }
+ 0%,100%{ transform:translateY(0px); }
+ 50%{ transform:translateY(-3px); }
  }
 
  .glass{
@@ -584,23 +586,34 @@
  }
 
  .author{
- bottom:188px;
+ bottom:150px;
  }
  }
 
  @media (max-width: 640px){
  body{
  padding:0;
+ align-items:stretch;
  }
 
  .poster{
  width:100vw;
- height:100vh;
+ min-height:100vh;
+ min-height:100svh;
+ min-height:100dvh;
+ height:auto;
  aspect-ratio:auto;
  }
 
  .content{
- padding:72px 20px 26px;
+ min-height:100vh;
+ min-height:100svh;
+ min-height:100dvh;
+ padding:
+ calc(72px + env(safe-area-inset-top))
+ 20px
+ calc(28px + env(safe-area-inset-bottom))
+ 20px;
  }
 
  .title .top{ font-size:34px; }
@@ -634,25 +647,33 @@
  }
 
  .middle{
- height:290px;
+ height:330px;
  margin-top:20px;
- }
-
- .glass,
- .num,
- .mini-bottom{
- display:none;
+ transform:scale(.72);
+ transform-origin:top center;
  }
 
  .wave-wrap{
- width:115%;
+ width:125%;
  height:130px;
- top:56%;
+ top:57%;
+ }
+
+ .glass{
+ display:block;
+ }
+
+ .num{
+ display:block;
+ }
+
+ .mini-bottom{
+ display:flex;
  }
 
  .ai-card{
- right:8px;
- bottom:18px;
+ right:6px;
+ bottom:12px;
  width:185px;
  height:138px;
  border-radius:18px;
@@ -688,7 +709,7 @@
  position:static;
  transform:none;
  text-align:center;
- margin-top:8px;
+ margin-top:0;
  margin-bottom:18px;
  font-size:16px;
  }
@@ -700,12 +721,67 @@
  display:grid;
  grid-template-columns:1fr 1fr;
  gap:12px;
+ margin-top:-8px;
  }
 
  .feature{
  min-height:62px;
  font-size:17px;
  border-radius:16px;
+ }
+ }
+
+ @media (max-width: 420px){
+ .content{
+ padding:
+ calc(64px + env(safe-area-inset-top))
+ 14px
+ calc(22px + env(safe-area-inset-bottom))
+ 14px;
+ }
+
+ .title .top{ font-size:28px; }
+ .title .mid,
+ .title .bottom{ font-size:35px; }
+
+ .subtitle{
+ font-size:15px;
+ }
+
+ .middle{
+ height:280px;
+ transform:scale(.60);
+ }
+
+ .features{
+ gap:10px;
+ }
+
+ .feature{
+ min-height:56px;
+ font-size:15px;
+ padding:8px;
+ }
+
+ .top-right{
+ right:14px;
+ top:14px;
+ }
+
+ .dots-tl{
+ left:12px;
+ top:16px;
+ transform:scale(.62);
+ }
+
+ .dots-bl{
+ left:12px;
+ bottom:16px;
+ transform:scale(.62);
+ }
+
+ .author{
+ font-size:14px;
  }
  }
  </style>
